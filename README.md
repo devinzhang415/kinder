@@ -1,2 +1,2 @@
-# kinder
+# Kinder
  Super Tic-Tac-Toe AI

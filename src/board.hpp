@@ -5,16 +5,18 @@
 #include "util.hpp"
 #include "subboard.hpp"
 
+using namespace std;
+
 class Board {
 
 public:
     Board();
     ~Board();
 
-    friend std::ostream& operator<<(std::ostream& os, const Board& board);
+    friend ostream& operator<<(ostream& os, const Board& board);
 
 private:
-    std::array<Subboard, 9> grid;
+    array<Subboard, 9> grid;
 
 };
 

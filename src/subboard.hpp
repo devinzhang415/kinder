@@ -4,7 +4,10 @@
 #include <stdint.h>
 #include <iostream>
 #include <array>
+#include <vector>
 #include "util.hpp"
+
+using namespace std;
 
 class Subboard {
 
@@ -12,16 +15,17 @@ public:
     Subboard();
     ~Subboard();
 
-    void play(int position, util::Player player);
+    void play(int position,Player player);
+    vector<int> getMoves() const;
 
-    char getWinner() const;
+    Player getWinner() const;
 
-    friend std::ostream& operator<<(std::ostream& os, const Subboard& subboard);
+    friend std::ostream& operator<<(ostream& os, const Subboard& subboard);
 
 private:
-    std::array<util::Player, 9> grid;
+    array<Player, 9> grid;
     
-    char winner;
+    Player winner;
 
 };
 

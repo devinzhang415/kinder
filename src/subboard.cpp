@@ -152,14 +152,15 @@ void Subboard::play(int position, Player player) {
  *        This list will be empty if there is a winner for this board already,
  *        indicating it is not possible to make further moves on this board.
  * 
- * @return vector<int>, a list of indices possible to play a move at.
+ * @return vector< pair<Subboard*, int> >, a list of indices possible to play a move at in this subboard.
  */
-vector<int> Subboard::getMoves() const {
-    vector<int> moves;
+vector< pair<Subboard*, int> > Subboard::getMoves() {
+    vector< pair<Subboard*, int> > moves;
     if (winner != _) {
         for (int position = 0; position < 9; position++) {
             if (grid[position] == _) {
-                moves.push_back(position);
+                pair<Subboard*, int> move = make_pair(this, position);
+                moves.push_back(move);
             }
         }
     }
@@ -175,6 +176,23 @@ Player Subboard::getWinner() const {
     return winner;
 }
 
+/**
+ * @brief Whether there is a winner for this subboard.
+ * 
+ * @return true if winner is X or O.
+ * @return false if winner is _.
+ */
+bool Subboard::hasWinner() const {
+    return (winner != _);
+}
+
+/**
+ * @brief Print the subboard.
+ * 
+ * @param os 
+ * @param subboard 
+ * @return ostream& 
+ */
 ostream& operator<<(ostream& os, const Subboard& subboard) {
     array<Player, 9> board = subboard.grid;
     for (int i = 0; i < 3; i++) {
